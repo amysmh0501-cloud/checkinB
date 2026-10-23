@@ -96,8 +96,18 @@
 </div>
 
 <script>
-  // ⚠️ 請替換為您 GAS 部署後獲得的 Web App URL
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbxEna-6JQquxNczx0sB3sGa4ECzEOWi-ppd4J22obFD3XAPg_WZTIqa4IRTPUC_2KRI4A/exec";
+  const API_URL = "https://script.google.com/macros/s/AKfycbxEna-6JQquxNczx0sB3sGa4ECzEOWi-ppd4J22obFD3XAPg_WZTIqa4IRTPUC_2KRI4A/exec";
+
+fetch(`${API_URL}?action=ping`)
+  .then(async (response) => {
+    console.log("HTTP status:", response.status);
+    console.log("Response URL:", response.url);
+    console.log("Response:", await response.text());
+  })
+  .catch((error) => {
+    console.error("API connection failed:", error);
+  });
+  
 
   function showStatus(msg, type) {
     const el = document.getElementById("status");
